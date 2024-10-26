@@ -31,6 +31,8 @@ This project processes and clusters GPS trajectory data from the GeoLife dataset
 
 4. **Visualization**: Generates visualizations to illustrate the spatial distribution and relationships among clusters.
 
+![Alt text for the image](methodology.png)
+
 ## Setup
 
 ### Requirements
