@@ -7,6 +7,15 @@ This project processes and clusters GPS trajectory data from the GeoLife dataset
 - **k-d Tree Partitioning**: Recursively splits data based on geographic dimensions (longitude/latitude) with balanced, median-based splits. This ensures optimal partitioning for high-dimensional data and varying densities.
 - **Border Point Detection and Merging**: Detects border points near partition boundaries, assigns them dynamically based on proximity, and merges clusters across partitions.
 
+
+## Key Features
+- **Data Sampling**: Extracts and samples data from GeoLife `.plt` files.
+- **k-d Tree Partitioning**: Divides geographic data using a k-d tree to optimize clustering.
+- **DBSCAN Clustering**: Applies DBSCAN to partitioned data for density-based clustering.
+- **Border Detection**: Detects border points in clusters for merging across partitions.
+- **Visualization**: Generates visualizations of clusters and borders for spatial analysis.
+
+
 ## Methodology
 1. **k-d Tree Partitioning**:
    - Data is split by alternating longitude and latitude, using median values for balanced splits.
