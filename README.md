@@ -1,24 +1,47 @@
-# GeoLife Trajectory Clustering and Analysis
+# 🌍 GeoLife Trajectory Clustering & Analysis
 
 This project processes and clusters GPS trajectory data from the GeoLife dataset using Spark and Python, leveraging k-d tree partitioning and DBSCAN clustering to efficiently analyze geographic patterns, especially useful for irregularly shaped and variable-density datasets.
 
-## Key Features
-- **Data Sampling**: Extracts and samples data from GeoLife `.plt` files.
-- **k-d Tree Partitioning**: Recursively splits data based on geographic dimensions (longitude/latitude) with balanced, median-based splits. This ensures optimal partitioning for high-dimensional data and varying densities.
-- **DBSCAN Clustering**: Each partition is clustered separately, identifying dense regions and border points for merging.
-- **Identify border points of clusters**: Border points are dynamically identified by checking proximity to boundaries and applying a dynamic epsilon value.
-- **Cluster Merging**: Uses a KDTree to find pairs of border points within epsilon distance and constructs a graph with clusters as nodes and edges between close clusters, identifying connected components for final merged clusters. 
-- **Visualization**: Generates visualizations of clusters and borders for spatial analysis.
+---
 
-![Alt text for the image](methodology.png)
+## ✨ Key Features
 
-## Setup
+- 📂 **Data Sampling**: Parses and samples GPS data from GeoLife `.plt` files.
+  
+- 🌳 **k-d Tree Partitioning**: Recursively divides data along longitude/latitude with **balanced, median-based splits** — ideal for high-dimensional, unevenly distributed spatial data.
+  
+- 📦 **Local DBSCAN Clustering**: Clusters each spatial partition independently, discovering **dense regions**, **noise**, and **border points**.
 
-### Requirements
-- Python (>= 3.7)
-- **Libraries**: `pyspark`, `pandas`, `scikit-learn`, `matplotlib`, `geopandas`, `folium`, `networkx`, `scipy`
+- 🚧 **Border Point Detection**: Dynamically identifies points near partition boundaries using **adaptive epsilon**, flagging potential cross-cluster connections.
 
-### Installation
+- 🔗 **Cluster Merging**:
+  - Builds a **KDTree** to detect nearby border points across partitions.
+  - Constructs a **graph with clusters as nodes** and edges between clusters with close border points.
+  - Applies **connected component detection** for final merged clusters.
+
+- 📊 **Visualization**: Generates intuitive plots and geospatial maps for clusters and borders — making patterns easily interpretable.
+
+![Clustering Methodology Overview](methodology.png)
+
+---
+
+## ⚙️ Setup
+
+### 🧰 Requirements
+
+- **Python**: 3.7 or above  
+- **Libraries**:
+  - `pyspark`
+  - `pandas`
+  - `scikit-learn`
+  - `matplotlib`
+  - `geopandas`
+  - `folium`
+  - `networkx`
+  - `scipy`
+
+### 🛠️ Installation
+
 1. Clone this repository and install dependencies:
    ```bash
    git clone https://github.com/yourusername/GeoLife-Trajectory-Clustering.git
@@ -33,5 +56,14 @@ This project processes and clusters GPS trajectory data from the GeoLife dataset
    spark = SparkSession.builder.appName("GeoLifeData").getOrCreate()
    ```
 
-## Results
-The approach provides a scalable method for clustering large-scale, irregular geographic data, identifying and merging clusters across partitions with precision.
+## 🛰️ Results
+
+This project delivers a **robust, distributed framework** for clustering large-scale GPS trajectory data with high spatial complexity. It is optimized for datasets like GeoLife that feature:
+
+- 🌐 **Spatial Irregularities**: Effectively manages non-uniform distributions and real-world trajectory noise.
+- 🧭 **Local Density Variations**: Maintains cluster integrity by adapting to regions of varying point density.
+- 🔗 **Cross-Partition Merging**: Seamlessly merges clusters that span across partition boundaries using graph-based techniques.
+
+The final result?  
+> Clean, interpretable cluster groupings that **scale beautifully** with data volume and **preserve geographic context**, making them ideal for mobility analysis, urban planning, and location-based services.
+
